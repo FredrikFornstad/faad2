@@ -6,7 +6,7 @@ Epoch: 1
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.7
-Release: 18%{?dist}
+Release: 19%{?dist}
 License: GPLv2
 Group: Applications/Multimedia
 Source0: http://download.sourceforge.net/faac/%{name}-%{version}.tar.bz2
@@ -17,7 +17,7 @@ BuildRequires: dos2unix
 BuildRequires: autoconf, automake, libtool, gcc-c++
 BuildRequires: libsndfile-devel >= 1.0.0
 BuildRequires: xmms-devel, id3lib-devel, gtk+-devel
-BuildRequires: zlib-devel
+BuildRequires: zlib-devel, atrpms-rpm-config
 Obsoletes: faad2-libs <= %{evr}
 %lib_dependencies
 
@@ -83,6 +83,9 @@ rm -rf %{buildroot}
 %{xmmsinputdir}/*.la
 
 %changelog
+* Wed May 6 2015 Fredrik Fornstad <fredrik.fornstad@gmail.com> - 1:2.7-19
+- Added buildrequirement atrpms-rpm-config
+
 * Mon Sep  5 2011 Axel Thimm <Axel.Thimm@ATrpms.net> - 1:2.7-18
 - Make sure the binaries are executable.
 
