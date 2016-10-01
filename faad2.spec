@@ -5,7 +5,7 @@ Epoch: 1
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.7
-Release: 19%{?dist}
+Release: 20%{?dist}
 License: GPLv2
 Group: Applications/Multimedia
 Source0: http://download.sourceforge.net/faac/%{name}-%{version}.tar.bz2
@@ -17,33 +17,33 @@ BuildRequires: autoconf, automake, libtool, gcc-c++
 BuildRequires: libsndfile-devel >= 1.0.0
 BuildRequires: xmms-devel, id3lib-devel, gtk+-devel
 BuildRequires: zlib-devel
-Requires: %{name}-libs_%{version}
+Requires: %{name}-libs
 
 %description
 FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder,
 completely written from scratch.
 
-%package libs_%{version}
+%package libs
 Summary: faad2 shared library
 Group: Development/Libraries
 
-%description libs_%{version}
+%description libs
 This package contain the shared faad2 library.
 
 %package devel
 Summary: faad2 decoder library development files.
-Requires: %{name}-libs_%{version}
+Requires: %{name}-libs
 
 %description devel
 This package contains the shared library development files.
 
-%package -n xmms-aac_%{version}
+%package -n xmms-aac
 Summary: X MultiMedia System input plugin to play AAC files
 Group: Applications/Multimedia
 Requires: %{name} = %{epoch}:%{version}, xmms, id3lib
 Obsoletes: xmms-faad2 <= %{evr}
 
-%description -n xmms-aac_%{version}
+%description -n xmms-aac
 This xmms plugin reads AAC files with and without ID3 tags (version 2.x).
 AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
 (.mp4). MPEG4 files with AAC inside can be read by RealPlayer or Quicktime.
@@ -74,9 +74,9 @@ make
 rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 
-%post libs_%{version} -p /sbin/ldconfig
+%post libs -p /sbin/ldconfig
 
-%postun libs_%{version} -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %clean
 rm -rf %{buildroot}
@@ -88,7 +88,7 @@ rm -rf %{buildroot}
 %{_bindir}/*
 %{_mandir}/manm/faad.man*
 
-%files -n xmms-aac_%{version}
+%files -n xmms-aac
 %defattr(0644,root,root,0755)
 %doc plugins/xmms/AUTHORS plugins/xmms/NEWS
 %doc plugins/xmms/README plugins/xmms/TODO
@@ -97,7 +97,7 @@ rm -rf %{buildroot}
 %{xmmsinputdir}/*.a
 %{xmmsinputdir}/*.la
 
-%files libs_%{version}
+%files libs
 %defattr(-,root,root)
 %{_libdir}/libfaad.so.*
 
@@ -115,6 +115,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Sep 30 2016 Fredrik Fornstad <fredrik.fornstad@gmail.com> - 1_2.7-20
+- Adopted libnaming to ClearOS standard
+
 * Sat Jun 13 2015 Fredrik Fornstad <fredrik.fornstad@gmail.com> - 1_2.7-19
 - Introduced versionhandling of libs to avoid future upgrade conflicts
 
